@@ -1,2 +1,65 @@
-# Movie-Genre
-Classifiying movie genre based on the title
+# Introduction
+
+## 1.1. Preface
+
+In the project proposal, we scraped data from the box office mojo website which is one of the greatest online references that declare box office receipts, domestically and internationally based on their total sales each year. Our extracted data set is specifically about the 200 best domestic total sales from 2000 to 2023. This data consists of the movie's title, distributor, year in which the movie was shown (not just released) and total sale of each movie.
+
+Additionally, another data set from Kaggle that was based on the IMDB website was used to add a genre column to our data set if the movie's title is similar to our data frame and the Kaggle one. An inflation factor has been defined to normalize the total sale of each movie and make them comparable with each other without considering the year of presentation and the value of the US dollar in that year. In the end, our data was visualized in some aspects like comparing the top 10 movies in each year and the respective total sales by bar charts and box plots. The final modified data frame was saved as a CSV file for further use in this project.
+    
+Our saved data frame has some missing values in the genre section, as our initial data and the one that we used from Kaggle to extract the genre are not the same. Those missing values were replaced with "Unknown" to be identified more easily in this phase of our research. Our intention is to predict and replace the "Unknown" genres using machine learning and deep learning classification methods. Some further visualisation will be presented to have a better insight into our data distribution regarding the genres and movie distributors.
+
+I am going to use machine learning and deep learning models for my prediction. I think it is good to start with the difference between machine learning and deep learning first from a definition in Amazon."The goal of any AI system is to have a machine complete a complex human task efficiently. Such tasks may involve learning, problem-solving, and pattern recognition.
+On the other hand, the goal of ML is to have a machine analyze large volumes of data. The machine will use statistical models to identify patterns in the data and produce a result. The result has an associated probability of correctness or degree of confidence."<sup>[<a href="https://aws.amazon.com/compare/the-difference-between-artificial-intelligence-and-machine-learning/#:~:text=The%20goal%20of%20any%20AI,analyze%20large%20volumes%20of%20data.">Link</a>]</sup>
+
+We as humans have some sense of what a movie genre is when reading the title. Many of these predictions are based on our previously watched movies. Even if we do not have any idea what genre a Batman movie is the first time, the second time we will predict that it would not be a comedy. I believe models can learn from a large data set that eventually a movie title consisting of Evil indicates the Horror genre most of the time, although there are outliers like Maleficent: Mistress of Evil.
+
+## Literature review
+
+A movie consists of many features such as video, script, audio and posters. There are three main collections of data that have been used for classifying movies. These three types of data are:
+- text: using a text type input such as a movie's description of our data or the movie's subtitle and script ( full or partial).
+- picture: using the poster of the movies, or some frames of the movie
+- videos: using a semi-short version of the movie or the full version of our video with or without the audio
+
+For text-based classification, a great approach is being used In a detailed study -[Rajput, Nikhil Kumar, and Bhavya Ahuja Grove, 2022](https://link-springer-com.gold.idm.oclc.org/article/10.1007/s11042-022-12961-6)-  to classify the movie regarding the subtitles. The subtitles have first been processed by undergoing some changes like removing stop words and then trying to apply feature extraction by words that seem more essential for identifying the genre using machine learning techniques. The algorithm used in the project retrieves the most relevant words that relate to a movie’s genre. The algorithm was run on 964 movies from six genres: Action, Fantasy, Horror, Romance, Sports and War.
+
+
+Another great work - [Kumar, Sanjay, Nikhil Kumar, Aditya Dev, and Siraz Naorem, 2023](https://link-springer-com.gold.idm.oclc.org/article/10.1007/s11042-022-13211-5)- has been done to classify movies from information extracted by their synopses and plots. A label powerset has been used to convert the multi-label classification into a single-labelled one by generating the set of all possible combinations of the labels present in the dataset. Their approach was a classical machine learning classifier namely: multinomial naive Bayes (MNB), logistic regression (LR), K-nearest neighbour (KNN), and support vector classifier (SVC).
+
+In research  - [Hwang, Tae-Gyu, Chan-Soo Park, Jeong-Hwa Hong, and Sung Kwon Kim, 2016](https://link-springer-com.gold.idm.oclc.org/article/10.1007/s11042-016-3526-8) - about making a movie recommendation system on the dataset of MovieLens with 100k samples and 18 genres has been used. The movies are classified into the pair of genres that have the highest correlation value. The total number of unique genes becomes 7 and each movie becomes a combination of these 7 with the most relation.  
+
+
+Within a movie classification investigation - [Mangolin, Rafael B., Rodolfo M. Pereira, Alceu S. Britto, Carlos N. Silla, Valéria D. Feltrim, Diego Bertolini, and others, 2022](https://link-springer-com.gold.idm.oclc.org/article/10.1007/s11042-020-10086-2) - audio and images from trailers, subtitles, posters, and synopses have been used in a multi-label scenario using multimodal classifiers. The approach used multi-label classifiers for each representation using the Binary Relevance and ML-kNN algorithms.
+
+
+Another similar study - [Cai, Zihui, Hongwei Ding, Jinlu Wu, Ying Xi, Xuemeng Wu, and Xiaohui Cui, 2023](https://link-springer-com.gold.idm.oclc.org/article/10.1007/s11042-023-16121-2) - used audio, poster, plot and frame sequences from video of movies and applying multimodal fusion techniques including decision-level fusion and intermediate fusion on a multi-label movie genre classification data. As the movies are multi-genre they trained binary classifiers about the number of geners. They designed three multimodal models, including the decision-level fusion model (LAVO-D) and two intermediate fusion models (LAVO-C and LAVO-S).
+
+In a recent study - [Behrouzi, Tina, Ramin Toosi, and Mohammad Ali Akhaee, 2023](https://link-springer-com.gold.idm.oclc.org/article/10.1007/s11042-022-13418-6) - the movies were classified using the movies' acoustic and visual features as a set of frames that are time-sequential dependent and by designing a deep 1D convolutional network and two RNN structures (LSTM and GRU) 
+
+
+Another research - [Narawade, Vaibhav, Aneesh Potnis, Vishwaroop Ray, and Pratik Rathor, 2023](https://www.itm-conferences.org/articles/itmconf/abs/2021/05/itmconf_icacc2021_03048/itmconf_icacc2021_03048.html) - tried to classify movies into the three most probable genres that they belong to out of 25 genres by one poster of that movie. using a Convolutional Neural Networks (CNN) model and extracting visual info. The approach was not a binary classification but a multi-label classification (25 predefined genres). They also applied techniques such as data augmentation and L2 regularization in their approach.
+
+
+A Video-based movie genre classification approach - [Zhang, Zhongping, Yiwen Gu, Bryan A Plummer, Xin Miao, Jiayi Liu, and Huayan Wang, 2023](https://arxiv.org/abs/2203.13281) - used the entire video as the input, ignoring the language element of the video and passing it to a video encoder while passing the audio element separately by using an Automatic Speech Recognition (ASR) system. They used a shot sampling strategy to select key frames from input video as the visual representations.
+
+
+In a significant inquiry - [Mangolin, Rafael B, Rodolfo M Pereira, Alceu S Britto, Carlos N Silla, Valéria D Feltrim, Diego Bertolini, and others, 2020](https://arxiv.org/abs/2006.00654) - used a dataset composed of trailer video clips, subtitles, synopses, and movie posters taken from 152,622 movie titles from The Movie Database (TMDb), Each movie of the dataset was labelled according to a set of eighteen genre labels. They extracted features from these data using different kinds of descriptors, namely Mel Frequency Cepstral Coefficients (MFCCs), Statistical Spectrum Descriptor (SSD), Local Binary Pattern (LBP) with spectrograms, Long-Short Term Memory (LSTM), and Convolutional Neural Networks (CNN). The descriptors were evaluated using different classifiers, such as BinaryRelevance and ML-kNN.Literature review
+
+## Aims and Methodology
+
+The objective of the project is to find a proper deep-learning model for our data that can classify the genres of movies from the title and predict the unknown genres in our dataset. Our data is much more limited in comparison to previous studies that used full scripts, videos, audio and posters of a movie and in some cases a combination of those. A title is not typically more than 5 words, and our model must try to learn from the words that sometimes are just a name without a specific meaning, I did not find an exact project that tries to classify movies by their titles only.
+
+As mentioned in previous studies predicting the genes of a movie is a multiclassification task, Our first attempt would be using a sequential model with a single input of just the title. As the multiclass classification is harder and more likely to lead our model to overfit especially in data that is limited only to movie titles, we will reduce the genres into one genre, so that each movie title is related to one main genre only. The next approach would be adding a sentiment analysis score which is used in movie review classification research, and makes a 2-input model based on how negative or positive a movie title might be and the relevance of the movie's sentiment score to the genre. The number of inputs will increase to improve the accuracy, these inputs are the ones used in our data frame such as total gross, year of presentation and movie distributor.
+
+We will try to increase the number of inputs sequentially to increase the accuracy. Other models like LSTM or convolutional models have also been considered based on the previous research and some of them will be used to see if they can achieve better scores. The choice of the models' priority is first trying to use simple models as much as we can, as the more complex a model becomes the more probable that it leads to overfits. It is worth mentioning that our data is not distributed equally in hence of the genre so the number of specific genres is more than the others which will affect model prediction. Some techniques like data augmentation, dropouts and regularization are also used to avoid overfitting occurrences. In our case using convolutional models which is one of the popular approaches for classifying genres from movie posters does not seem to be a proper choice as titles are mostly something between 2 and 3 words.
+
+Predicting the missing genre in our data set is enjoyable but as the values are missing due to the difference between our scraped data and the data set that we used to extract the genre, there would not be a measurement of our model succession in unseen data. Therefore, another external data set that has no common titles would be used for the final evaluation. 
+
+## Ethics
+
+In my project proposal, I mentioned that the Box Office Mojo website which I scrape parts of my data "does not expressly describe any prohibitions concerning web scraping. It is necessary for individuals engaging in personal utilization or copying of the source data obtained from this platform to check the extant terms and conditions of the website, whilst also ensuring permissions."
+
+The [Kaggle data set](https://www.kaggle.com/datasets/ashpalsingh1525/imdb-movies-dataset) that I used to add the genre of each movie to the scrapped data set clearly noted: "This data can be used for various analyses, such as identifying trends in movie genres, exploring the relationship between budget and revenue, and predicting the success of future movies."
+
+The [second Kaggle data set](https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows) that we use for the final evaluation does not mention any limitation use and licensed as public domain.
+
+This project is trying to explore different models for the purpose of movie title classification and not using it as it is for predicting a movie's genre for any use such as movie suggestion systems, as the accuracy is not high and even if the accuracy was high, there would always be some mistakes which may lead to misclassification. I do not recommend using any models of classification for animations or mixing movies with different age restriction policies.
